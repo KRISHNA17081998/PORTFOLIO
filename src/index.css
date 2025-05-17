@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes text-slide {
+  0%, 20% { transform: translateY(0); }
+  25%, 45% { transform: translateY(-100%); }
+  50%, 70% { transform: translateY(-200%); }
+  75%, 100% { transform: translateY(0); }
+}
+
+.animate-text-slide {
+  animation: text-slide 6s infinite;
+}
+
+
+
+/* Add this to your global CSS file */
+.text-glow {
+  text-shadow: 0 0 5px rgba(0, 0, 255, 0.8), 0 0 10px rgba(0, 0, 255, 0.6), 0 0 15px rgba(0, 0, 255, 0.4), 0 0 20px rgba(0, 0, 255, 0.2);
+}
+
+.text-glow-dark {
+  text-shadow: 0 0 5px rgba(255, 165, 0, 0.8), 0 0 10px rgba(255, 165, 0, 0.6), 0 0 15px rgba(255, 165, 0, 0.4), 0 0 20px rgba(255, 165, 0, 0.2);
+}
