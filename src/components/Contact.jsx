@@ -11,6 +11,7 @@ const Contact = () => {
 
   const [status, setStatus] = useState('');
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,23 +20,28 @@ const Contact = () => {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('Sending...');
 
+
     emailjs
       .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formData,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, // Service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // Template ID
+        formData, // Form data
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // Public Key
       )
-      .then(() => {
+      .then((response) => {
+        console.log('Success:', response);
         setStatus('Message sent successfully!');
         setFormData({ name: '', email: '', message: '' });
         setTimeout(() => setStatus(''), 3000);
       })
-      .catch(() => {
+      .catch((error) => {
+
+        console.error('Error response:', error);
         setStatus('Failed to send message. Please try again.');
         setTimeout(() => setStatus(''), 3000);
       });
@@ -44,15 +50,14 @@ const Contact = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 py-20 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-6xl mx-auto">
-
-        {/* Heading */}
         <h2 className="text-4xl sm:text-5xl font-bold text-blue-600 text-center mb-4">Contact Me</h2>
         <div className="w-24 h-1 bg-black mx-auto mb-12"></div>
 
-        {/* Contact Form */}
         <div className="bg-white dark:bg-gray-800 p-6 sm:p-10 md:p-12 rounded-lg shadow-lg mb-12 w-full max-w-4xl mx-auto">
           <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-800 dark:text-white text-center">Get in Touch</h3>
           <form onSubmit={handleSubmit} className="space-y-6">
+            <input type="hidden" name="form-name" value="contact-form" />
+
             <div>
               <label className="block text-gray-700 dark:text-gray-300 mb-2 text-base sm:text-lg">Name</label>
               <input
@@ -61,10 +66,11 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black dark:text-white bg-white dark:bg-gray-700"
                 placeholder="Your Name"
               />
             </div>
+
             <div>
               <label className="block text-gray-700 dark:text-gray-300 mb-2 text-base sm:text-lg">Email</label>
               <input
@@ -73,10 +79,11 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black dark:text-white bg-white dark:bg-gray-700"
                 placeholder="your@email.com"
               />
             </div>
+
             <div>
               <label className="block text-gray-700 dark:text-gray-300 mb-2 text-base sm:text-lg">Message</label>
               <textarea
@@ -84,10 +91,11 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-40 resize-none"
+                className="w-full px-5 py-3 text-base sm:text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black dark:text-white bg-white dark:bg-gray-700 h-40 resize-none"
                 placeholder="Your message..."
               ></textarea>
             </div>
+
             <button
               type="submit"
               disabled={status === 'Sending...'}
@@ -95,6 +103,7 @@ const Contact = () => {
             >
               {status === 'Sending...' ? 'Sending...' : 'Send Message'}
             </button>
+
             {status && (
               <p
                 className={`text-center text-lg ${
@@ -105,34 +114,6 @@ const Contact = () => {
               </p>
             )}
           </form>
-        </div>
-
-        {/* Quick Links */}
-        <div className="text-center mb-10">
-          <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Quick Links</h3>
-          <div className="flex flex-wrap justify-center gap-6 text-base sm:text-lg">
-            <a href="#home" className="text-blue-600 hover:text-blue-800">Home</a>
-            <a href="#about" className="text-blue-600 hover:text-blue-800">About</a>
-            <a href="#skills" className="text-blue-600 hover:text-blue-800">Skills</a>
-            <a href="#projects" className="text-blue-600 hover:text-blue-800">Projects</a>
-            <a href="#contact" className="text-blue-600 hover:text-blue-800">Contact</a>
-          </div>
-        </div>
-
-        {/* Contact Info */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm sm:text-base text-gray-700 dark:text-gray-300 text-center">
-          <div className="flex items-center justify-center gap-3">
-            <Phone size={20} />
-            <span>+919953120067</span>
-          </div>
-          <div className="flex items-center justify-center gap-3">
-            <Mail size={20} />
-            <span>krishnatest52@gmail.com</span>
-          </div>
-          <div className="flex items-center justify-center gap-3">
-            <MapPin size={20} />
-            <span>New Delhi, India</span>
-          </div>
         </div>
       </div>
     </section>
