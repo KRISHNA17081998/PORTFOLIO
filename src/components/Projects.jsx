@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const projectData = [
-  { id: 1, title: "Hotel Booking", image: "/pictures/Hotel.png", url: "https://quick-stay2025.netlify.app" },
-  { id: 2, title: "Real Estate", image: "/pictures/QS.png", url: "https://quick-estate.netlify.app/" },
+  { id: 1, title: "Hotel Booking Application – Quick Stay", image: "/pictures/Hotel.png", url: "https://quick-stay2025.netlify.app" },
+  { id: 2, title: "Real Estate Platform – Quick Estate", image: "/pictures/QS.png", url: "https://quick-estate.netlify.app/" },
   { id: 3, title: "Random Color Generator", image: "/pictures/RANDOMCOLORGENERATOR.jpg", url: "https://randomcolorgenerator2025.netlify.app" },
   { id: 4, title: "Password Generator", image: "/pictures/RANDOMPASSWORDGENERATOR.png", url: "https://randompasswordgenerator2025.netlify.app" },
   { id: 5, title: "Calculator", image: "/pictures/CALCULATOR.jpg", url: "https://classic-calculator2025.netlify.app" },
